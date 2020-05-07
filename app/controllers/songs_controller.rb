@@ -13,7 +13,6 @@ class SongsController < ApplicationController
   end
 
   def create
-    binding.pry
     artist = Artist.find_or_create_by(name: song_params[:artist_name])
     @song = artist.songs.build(song_params)
 
