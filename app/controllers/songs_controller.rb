@@ -9,9 +9,15 @@ class SongsController < ApplicationController
 
   def new
     @song = Song.new
+
+    # Build 3 "empty" notes that are automatically set up with the correct
+    # parameter names to be used by accepts_nested_attributes_for
+    # See:
+    # https://api.rubyonrails.org/v5.2.3/classes/ActionView/Helpers/FormHelper.html#method-i-fields_for
+    3.times { @song.notes.build }
   end
 
- def create
+  def create
     artist = Artist.find_or_create_by(name: song_params[:artist_name])
     @song = artist.songs.build(song_params)
 
