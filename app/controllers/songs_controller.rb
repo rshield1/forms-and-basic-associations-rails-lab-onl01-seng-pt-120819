@@ -9,9 +9,10 @@ class SongsController < ApplicationController
 
   def new
     @song = Song.new
+    3.times { @song.notes.build }
   end
 
- def create
+  def create
     artist = Artist.find_or_create_by(name: song_params[:artist_name])
     @song = artist.songs.build(song_params)
 
